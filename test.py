@@ -37,7 +37,23 @@ def load(filename) :
         M.append(li)
     f.close()
     return M
-print(load("C:/Users/rejom/Documents/test.txt"))
+
+def add_matrices(A,B) :
+    #liste1,liste2 = [],[]
+    if len(A)!=len(B) :
+        raise Exception ("ceci n'est pas une matrice")
+    else :
+        for i in range(len(A)) :
+            if len(A[i])!=len(B[i]) :
+                raise Exception ("ceci n'est pas une matrice")
+            else :
+                for j in range(len(A[i])) :
+                    A[i][j] += B[i][j]
+        return A
+print(add_matrices([[1,2,3],[1,2,3]],[[1,2,3],[1,2,3]]))
+
+
+
 
 
 
