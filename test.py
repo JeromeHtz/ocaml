@@ -8,7 +8,6 @@ def init(l,c,val) :
     return L
 
 def str2intlist(s) :
-    print("debut")
     L,string = [],""
     i=0
     string_1 = ""
@@ -26,6 +25,8 @@ def str2intlist(s) :
             L.append(int(string))
             string = ""
         i+=1
+    if s[i-1]!='n' :
+        L.append(int(s[i-1]))
     return L
 
 def load(filename) :
@@ -37,6 +38,7 @@ def load(filename) :
         M.append(li)
     f.close()
     return M
+print(load("C:/Users/rejom/Documents/test.txt"))
 
 def add_matrices(A,B) :
     #liste1,liste2 = [],[]
@@ -50,7 +52,22 @@ def add_matrices(A,B) :
                 for j in range(len(A[i])) :
                     A[i][j] += B[i][j]
         return A
-print(add_matrices([[1,2,3],[1,2,3]],[[1,2,3],[1,2,3]]))
+
+def mult_matrices(A,B) :
+    liste = []
+    b = 0
+    for i in range(len(A)) :
+        a = 0
+        res = 0
+        res1 = 0
+        for j in range(len(B)) :
+            res += A[i][j]*B[a][b]
+            if i==0 :
+                res1 += A[i+1][j]*B[a][b]
+            a+=1
+        b+=1
+        liste.append(res1)
+    return liste
 
 
 
