@@ -253,7 +253,7 @@ def mult_11(n) :
             i+=1
             j-=1
         return resultat
-
+print(mult_11(56))
 
 def int_to_list(n) :
     liste = []
@@ -307,4 +307,3 @@ def dicho_list(x,L) :
         return middle
     else :
         return right
-print(dicho_list(2,[1,4,5]))
