@@ -38,37 +38,46 @@ def load(filename) :
         M.append(li)
     f.close()
     return M
-print(load("C:/Users/rejom/Documents/test.txt"))
 
 def add_matrices(A,B) :
-    #liste1,liste2 = [],[]
     if len(A)!=len(B) :
-        raise Exception ("ceci n'est pas une matrice")
+        raise Exception ("Les matrices ne sont pas de meme taille.")
     else :
         for i in range(len(A)) :
             if len(A[i])!=len(B[i]) :
-                raise Exception ("ceci n'est pas une matrice")
+                raise Exception ("Les matrices ne sont pas de meme taille.")
             else :
                 for j in range(len(A[i])) :
                     A[i][j] += B[i][j]
         return A
 
 def mult_matrices(A,B) :
-    liste = []
-    b = 0
+    if len(A[0])!=len(B) :
+        raise Exception("error")
+    M = []
+    p,n = len(B[0]),len(B)
     for i in range(len(A)) :
-        a = 0
-        res = 0
-        res1 = 0
-        for j in range(len(B)) :
-            res += A[i][j]*B[a][b]
-            if i==0 :
-                res1 += A[i+1][j]*B[a][b]
-            a+=1
-        b+=1
-        liste.append(res1)
-    return liste
+        line = []
+        for j in range(p) :
+            s = 0
+            for k in range(n) :
+                s+=A[i][k]*B[k][j]
+            line.append(s)
+        M.append(line)
+    return M
 
+def gaplist(L) :
+    maxi, mini = L[0], L[0]
+    for i in range(1,len(L)) :
+        maxi,mini = max(maxi,L[i]),min(mini,L[i]) 
+    return maxi-mini
+
+def maxgap(M) :
+    maxgap = gaplist(M[0])
+    for i in range(1,len(M)) :
+        maxgap = max(maxgap,gaplist(M[i]))
+    return maxgap
+print(maxgap([[1,10,3],[-1,0,1,8],[10,9,14,1]]))
 
 
 
