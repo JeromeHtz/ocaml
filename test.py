@@ -1,3 +1,6 @@
+from decimal import MAX_PREC
+
+
 def init(l,c,val) :
     L=[]
     for i in range(l) :
@@ -77,7 +80,46 @@ def maxgap(M) :
     for i in range(1,len(M)) :
         maxgap = max(maxgap,gaplist(M[i]))
     return maxgap
-print(maxgap([[1,10,3],[-1,0,1,8],[10,9,14,1]]))
+
+def symetric(M) :
+    test = True
+    i=1
+    while i<len(M) and test :
+        j=0
+        while j<i and test :
+            test = M[i][j]==M[j][i]
+            j+=1
+        i+=1
+    return test
+
+def list_sorted(L) :
+    n = len(L)
+    test = True
+    i=1
+    while i<n and test==True :
+        if not(L[i-1]<L[i]) :
+            test=False
+        i+=1
+    return test
+
+def matrix_sorted(M) :
+    n,m=len(M),len(M[0])
+    test,i = True,1
+    list_sorted(M[0])
+    value = M[0][m-1]
+    while i<n and test==True :
+        m1 = len(M[i])
+        if M[i][0]<value or not(list_sorted(M[i])):
+            test = False
+        else :
+            value = M[i][m1-1]
+        i+=1
+    return test
+print(matrix_sorted([[1,2,3],[4,3,6],[7,8,9]]))
+        
+
+
+
 
 
 
