@@ -1,0 +1,77 @@
+#load "graphics.cma";;
+(*#use "topfind";; 
+  #require "graphics";;*)
+open Graphics;;
+open_graph " 1200x800 ";;
+
+draw_rect 110 110 200 200;;
+
+
+(* ########### DEFINITION DES VARIABLES ########### *)
+
+let color = red ;;
+let x = 310 and y = 310;;
+let z = 210 and t = 210;;
+
+(* ######## FONCTIONS GRAPHICS PREDEFINIES ######## *)
+
+clear_graph () (* supprime un graph *);;
+set_color color (* definit une couleur color *);;
+draw_rect x y z z (* dessine un carre non plein *);;
+fill_rect (x+310) y z z (* dessine un carre plein *);;
+lineto x y;; (* trace une ligne de la position au
+                point (x,y) *)
+moveto z t;; (* trace une ligne de la position au
+                point (z,t) *)
+rlineto x y;; (* deplace la position du point courant
+                 par le vecteur (x,y) *)
+rmoveto z t;; (* deplace la position du point courant
+                 par le vecteur (z,t) *)
+
+(* ################### EXERCICES ################## *)
+
+clear_graph () ;;
+
+let cell_color e = match e with
+  | 0 -> red
+  | _ -> black;;
+
+;;
+let rec length liste = match liste with
+  | [] -> 0
+  | e::l -> 1+length l;;
+
+let fct liste = match liste with 
+  | [] -> failwith "fct : empty list"
+  | e::l -> e
+              (*
+let draw_board board size = 
+  let ecart = 4 and x=0 and y=0 and squares = length(board) in let c = size+ecart in
+  let rec grille_rec x y size liste = let liste = fct board in match ((x,y),liste) with
+((_,_),[]) -> grille_rec x y size []
+    | ((x,y),e::l) when x=(squares-1)*c && y=squares*c -> ()
+    | ((x,y),e::l) when y=squares*c -> grille_rec (x+c) (y-squares*c) size l
+    | ((x,y),e::l) -> set_color (cell_color e) ; fill_rect x y size size ; grille_rec x (y+c) size l
+  in grille_rec x y size [];;
+*)
+              clear_graph () ;; 
+
+(*
+let rec draw_board_1 (x,y) board size = match board with
+|[] -> () 
+|e::b -> print_string "tour/" ; 
+(let rec draw_board (x,y) e size = match e with
+| [] -> ()
+| elt::e -> set_color (cell_color elt) ; fill_rect x y size size ; draw_board (x,y+size) e size 
+in draw_board (x,y) e size) ; draw_board_1 (x+100,y) b size;;
+*)
+
+let draw_board board size = let x=0 and y=0 and step = 4 in let c = size + step in
+  let rec draw_board_1 (x,y) board size = match board with
+    |[] -> () 
+    |e::b -> print_string "tour/" ; 
+        (let rec draw_board_2 (x,y) e size = match e with
+           | [] -> ()
+           | elt::e -> set_color (cell_color elt) ; fill_rect x y size size ; draw_board_2 (x,y+c) e size 
+         in draw_board_2 (x,y) e size) ; draw_board_1 (x+c,y) b size 
+  in draw_board_1 (x,y) board size ;;
