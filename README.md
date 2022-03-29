@@ -1,1 +1,1 @@
-# python2
+seulement l'operateur (::) est utilise
