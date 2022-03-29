@@ -28,3 +28,20 @@ let arith_list n a r =
       (m,l) when m=n -> l
     | (m,l) -> a::arithmetique (m+1) (a+r) l
   in arithmetique 0 a [] ;;
+
+let inverser liste =
+  let rec invers list elt = match list with
+      [] -> elt
+    | e::l -> invers l (e::elt)
+  in invers liste [];;
+
+let rec equals l1 l2 = match (l1,l2) with
+  | ([],[]) -> true
+  | ([],_) | (_,[]) -> false
+  | (e::l1,e1::l2) -> e=e1 && equals l1 l2 (t+1);;
+
+let retourner liste = 
+  let rec return list res = match list with
+      [] -> res
+    | e::l -> return l (e::res) 
+  in return liste [];;
