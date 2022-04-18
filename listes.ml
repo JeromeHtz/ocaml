@@ -74,7 +74,7 @@ let remove x liste =
   let rec remove_rec liste res booleen = match (liste,res,booleen) with
       ([],_,false) -> invalid_arg "remove : impossible de supprimer"
     | ([],r,true) -> r
-    | (e::l,r,b) when x=e -> remove_rec l r (true)
+    | (e::l,r,b) when x=e && b<>true -> remove_rec l r (true)
     | (e::l,r,b) -> e::remove_rec l r b 
   in remove_rec liste [] false;;
 
@@ -94,4 +94,10 @@ let rec insert_nth (x,y) v list = match (x,list) with
             | (y,[]) -> v::[]
             | (y,e::l) -> e::insert(y-1) l 
           in insert y e :: insert_nth (0,y) v li 
-  | (x,e::li) -> e::insert_nth (x-1,y) v li;;
+  | (x,e::li) -> e::insert_nth (x-1,y) v li;; 
+    
+let time f x =
+  let t = Sys.time() in
+  let fx = f x in
+  Printf.printf "Execution time: %fs\n" (Sys.time() -. t);
+  fx ;;
