@@ -35,6 +35,10 @@ let inverser liste =
     | e::l -> invers l (e::elt)
   in invers liste [];;
 
+let rec invers list = match list with
+    [] -> []
+  | e::l -> invers l@[e];;
+
 let rec equals l1 l2 = match (l1,l2) with
   | ([],[]) -> true
   | ([],_) | (_,[]) -> false
@@ -101,3 +105,8 @@ let time f x =
   let fx = f x in
   Printf.printf "Execution time: %fs\n" (Sys.time() -. t);
   fx ;;
+
+
+let rec generer_liste n = match n with
+      0 -> []
+    | i -> i::generer_liste(i-1);;
