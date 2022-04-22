@@ -16,7 +16,8 @@
 
 ## 1) le tri par insertion
     On part du principe qu'une liste vide est triee
-    ici ; l'algorithme consiste a inserer une valeur dans une liste triee ; et on repete cette action recursivement a l'aide d'une nouvelle liste initialement vide et la liste de base.
+    ici ; l'algorithme consiste a inserer une valeur dans une liste triee ; et on repete cette action recursivement 
+    a l'aide d'une nouvelle liste initialement vide et la liste de base.
     temps d'execution sur une liste de 100000 elements strictement decroissante : 284.274000 secondes
 ##
 
