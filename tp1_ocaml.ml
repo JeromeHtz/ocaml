@@ -34,11 +34,11 @@ let surface n =
       let et_5 = et_4/13 - 13*(et_4 mod 13) in 
       et_5 = 555 ;;
 
-let _strtoint i x y= 
+let _strtoint x = 
   let rec strtoint i x y = match i with 
     | i when i = (String.length x) || x.[i]='/' -> y
     | i -> strtoint (i+1)(x)(y^(Char.escaped(x.[i]))) 
-  in int_of_string(strtoint i x "");;
+  in int_of_string(strtoint 0 x "");;
 
 let tomorrow x = 
   let jour = _strtoint 0 x "" in
