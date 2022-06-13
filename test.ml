@@ -34,13 +34,13 @@ let xmiddle = 600 and ymiddle = 400;;
 let rayon = 5;;
 let hauteur = 14;;
 
-let rec x_graduation n (x,y) = if n<0 then failwith "on ne fait pas maintenant les n�gatifs" else 
+let rec x_graduation n (x,y) = if n<0 then failwith "on ne fait pas maintenant les negatifs" else 
 match n with
 0 -> ()
 | n -> set_color black ; moveto x (y-(hauteur/2)) ; lineto x (y+(hauteur/2)) ; x_graduation (n-1)(x+100,y);;
 
 let rec y_graduation n (x,y) = 
-  if n<0 then failwith "on ne fait pas maintenant les n�gatifs" else 
+  if n<0 then failwith "on ne fait pas maintenant les negatifs" else 
   match n with
     0 -> ()
     | n -> set_color black ; moveto (x-(hauteur/2)) y ; lineto (x+(hauteur/2)) y ; y_graduation (n-1)(x,y+100);;

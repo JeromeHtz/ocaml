@@ -1,3 +1,7 @@
+let rec length liste = match liste with
+    [] -> 0
+  | e::l -> 1+length l ;;
+
 let count x liste = 
   let rec count_rec i liste = match (liste,i) with
       ([],i) -> i
@@ -110,3 +114,42 @@ let time f x =
 let rec generer_liste n = match n with
       0 -> []
     | i -> i::generer_liste(i-1);;
+
+
+
+
+
+
+
+(*
+  Écrire la fonction int_of_bigint qui convertit un entier long en entier.
+  val int_of_bigint : int list -> int = <fun>
+  ♯ int_of_bigint [0; 1; 2; 3; 4; 5; 6; 7; 8; 9] ;;
+  - : int = 9876543210
+  ♯ int_of_bigint [] ;;
+  - : int = 0
+*)
+
+let int_of_bigint liste = match liste with
+    [] -> 0
+  | liste -> 
+    let rec aux liste = match liste with 
+        [] -> ""
+      | e::l -> aux l ^ string_of_int e 
+    in int_of_string(aux liste);;
+
+(*
+  Écrire la fonction bigint_of_int qui convertit un entier naturel en sa représentation sous forme
+  d’entier long (de liste de chiffres).
+  val bigint_of_int : int -> int list = <fun>
+  # bigint_of_int 9876543210 ;;
+  - : int list = [0; 1; 2; 3; 4; 5; 6; 7; 8; 9]
+  # bigint_of_int 0 ;;
+  - : int list = []
+*)
+
+let bigint_of_int integer =  
+  let rec aux integer = match integer with
+      0 -> []
+    | i -> i mod 10 :: aux (i/10) 
+  in aux integer ;;
